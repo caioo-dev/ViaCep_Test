@@ -1,0 +1,6 @@
+@ViaCEP_Test_HostAddress = http://localhost:5292
+
+GET {{ViaCEP_Test_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
