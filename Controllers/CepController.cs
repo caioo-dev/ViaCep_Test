@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ViaCEP_Test.Interfaces;
+using ViaCEP_Test.Models;
 
 namespace ViaCEP_Test.Controllers
 {
@@ -16,11 +17,10 @@ namespace ViaCEP_Test.Controllers
         [HttpGet("{cep}")]
         public async Task<IActionResult> GetAddressByCep(string cep)
         {
-            var address = await _cepService.GetAddressByCepAsync(cep);
-            if (address == null)
-            {
+            CepResponse? address = await _cepService.GetAddressByCepAsync(cep);
+            if (address is null)
                 return NotFound(new { Message = "CEP not found or invalid." });
-            }
+
             return Ok(address);
         }
     }
