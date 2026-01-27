@@ -16,10 +16,10 @@ namespace ViaCEP_Test.Services
         public async Task<CepResponse?> GetAddressByCepAsync(string cep)
         {
             // Usa caminho relativo porque BaseAddress foi configurada no Program.cs
-            var relativeUri = $"ws/{cep}/json/";
+            string relativeUri = $"ws/{cep}/json/";
             try
             {
-                var address = await _http.GetFromJsonAsync<CepResponse>(relativeUri, new JsonSerializerOptions
+                CepResponse? address = await _http.GetFromJsonAsync<CepResponse>(relativeUri, new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
                 });
