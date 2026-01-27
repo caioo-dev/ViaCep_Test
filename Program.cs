@@ -1,7 +1,7 @@
 using ViaCEP_Test.Interfaces;
 using ViaCEP_Test.Services;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Registra CepService como typed HttpClient com BaseAddress configurada
 builder.Services.AddHttpClient<ICepService, CepService>(client =>
@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {

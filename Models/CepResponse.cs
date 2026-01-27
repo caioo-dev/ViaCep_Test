@@ -1,37 +1,16 @@
-﻿using System.Text.Json.Serialization;
-
-namespace ViaCEP_Test.Models
+﻿namespace ViaCEP_Test.Models
 {
     public class CepResponse
     {
-        [JsonPropertyName("cep")]
-        public string Cep { get; set; }
-
-        [JsonPropertyName("logradouro")]
-        public string Logradouro { get; set; }
-
-        [JsonPropertyName("complemento")]
-        public string Complemento { get; set; }
-
-        [JsonPropertyName("bairro")]
-        public string Bairro { get; set; }
-
-        [JsonPropertyName("localidade")]
-        public string Localidade { get; set; }
-
-        [JsonPropertyName("uf")]
-        public string Uf { get; set; }
-
-        [JsonPropertyName("ibge")]
-        public string Ibge { get; set; }
-
-        [JsonPropertyName("gia")]
-        public string Gia { get; set; }
-
-        [JsonPropertyName("ddd")]
-        public string Ddd { get; set; }
-
-        [JsonPropertyName("siafi")]
-        public string Siafi { get; set; }
+        public string? Cep { get; set; }
+        public string? Logradouro { get; set; }
+        public string? Complemento { get; set; }
+        public string? Bairro { get; set; }
+        public string? Localidade { get; set; }
+        public string? Uf { get; set; }
+        public string? Ibge { get; set; }
+        public string? Gia { get; set; }
+        public string? Ddd { get; set; }
+        public string? Siafi { get; set; }
     }
 }
