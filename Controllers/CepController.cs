@@ -19,7 +19,7 @@ namespace ViaCEP_Test.Controllers
         {
             CepResponse? address = await _cepService.GetAddressByCepAsync(cep);
             if (address is null)
-                return NotFound(new { Message = "CEP not found or invalid." });
+                return NotFound("CEP não encontrado");
 
             return Ok(address);
         }

@@ -1,21 +1,26 @@
 ﻿using System.Text.Json;
 using ViaCEP_Test.Interfaces;
 using ViaCEP_Test.Models;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace ViaCEP_Test.Services
 {
     public class CepService : ICepService
     {
         private readonly HttpClient _http;
+        private readonly IMemoryCache _cache;
 
-        public CepService(HttpClient httpClient)
+        public CepService(HttpClient httpClient, IMemoryCache cache)
         {
             _http = httpClient;
+            _cache = cache;
         }
 
         public async Task<CepResponse?> GetAddressByCepAsync(string cep)
         {
-            // Usa caminho relativo porque BaseAddress foi configurada no Program.cs
+            if (_cache.TryGetValue(cep, out CepResponse cached))
+                return cached;
+
             string relativeUri = $"ws/{cep}/json/";
             try
             {
@@ -23,11 +28,12 @@ namespace ViaCEP_Test.Services
                 {
                     PropertyNameCaseInsensitive = true
                 });
+
+                _cache.Set(cep, address, TimeSpan.FromHours(6));
                 return address;
             }
             catch (HttpRequestException)
             {
-                // tratar exceções de rede se necessário
                 return null;
             }
         }
